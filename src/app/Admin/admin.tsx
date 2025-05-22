@@ -34,7 +34,7 @@ function admin() {
             </div>
             <div className='flex  flex-col gap-2'>
             <Button type='submit' className='bg-purple-900 hover:bg-purple-950'>Cadastrar</Button>
-             <Link href="/Admin/servico" className='w-full'>
+             <Link href="/servico" className='w-full'>
              <Button   className='bg-purple-900 hover:bg-purple-950 w-[63%]'>
              
               ver serviços cadastrados
