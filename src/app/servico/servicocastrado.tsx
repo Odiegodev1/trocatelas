@@ -5,10 +5,17 @@ import { supabase } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
+
+
 export default async function ServicoCadastrado() {
-  const { data: produtos, error } = await supabase
-    .from('produtos')
-    .select('*')
+  const { createClient } = await import('@supabase/supabase-js')
+
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_ANON_KEY!
+  )
+
+  const { data: produtos, error } = await supabase.from('produtos').select('*')
 
   if (error) {
     console.error('Erro ao buscar produtos:', error)
@@ -18,10 +25,7 @@ export default async function ServicoCadastrado() {
   return (
     <TableBody>
       {produtos.map((produto: any) => (
-        <TableRow
-          key={produto.id}
-          className="font-medium hover:bg-purple-950 text-zinc-100 text-xs"
-        >
+        <TableRow key={produto.id} className="font-medium hover:bg-purple-950 text-zinc-100 text-xs">
           <TableCell>{produto.nome}</TableCell>
           <TableCell>{produto.descricao}</TableCell>
           <TableCell className="text-right">R$ {produto.preco}</TableCell>
@@ -30,3 +34,4 @@ export default async function ServicoCadastrado() {
     </TableBody>
   )
 }
+
