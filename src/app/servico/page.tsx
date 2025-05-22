@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ServicoCadstrado from './servicocastrado'
+
 import { supabase } from '@/lib/supabase/server'
 import {
   Table,
